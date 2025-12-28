@@ -5,58 +5,38 @@ Implement binary logistic regression from scratch using PyTorch tensors and **ma
 
 ## Model
 Given features $x \in \mathbb{R}^d$, define the logit
-$$
-z = w^\top x + b
-$$
+$$z = w^\top x + b$$
 and probability
-$$
-p(y=1 \mid x) = \sigma(z) = \frac{1}{1 + e^{-z}}.
-$$
+$$p(y=1 \mid x) = \sigma(z) = \frac{1}{1 + e^{-z}}.$$
 
 ## Objective (stable form from logits)
 For labels $y \in \{0,1\}$, the regularized negative log-likelihood is
-$$
-\mathcal{L}(w,b) = \frac{1}{n}\sum_{i=1}^n \Big(\log(1+e^{z_i}) - y_i z_i\Big) + \lambda \lVert w \rVert_2^2.
-$$
+$$\mathcal{L}(w,b) = \frac{1}{n}\sum_{i=1}^n \Big(\log(1+e^{z_i}) - y_i z_i\Big) + \lambda \lVert w \rVert_2^2.$$
 To avoid overflow, $\log(1+e^{z})$ is computed using the numerically stable function $\mathrm{softplus}(z)$.
 
 ## Optimization
 
 ### Full-batch Gradient Descent
 Let $X \in \mathbb{R}^{n \times d}$ be the design matrix and $z = Xw + b\mathbf{1}$. The gradients are
-$$
-\nabla_w = \frac{1}{n}X^\top(\sigma(z)-y) + 2\lambda w,
+$$\nabla_w = \frac{1}{n}X^\top(\sigma(z)-y) + 2\lambda w,
 \qquad
-\nabla_b = \frac{1}{n}\sum_{i=1}^n(\sigma(z_i)-y_i).
-$$
+\nabla_b = \frac{1}{n}\sum_{i=1}^n(\sigma(z_i)-y_i).$$
 Parameters are updated using a fixed learning rate $\eta$:
-$$
-w \leftarrow w - \eta \nabla_w,
+$$w \leftarrow w - \eta \nabla_w,
 \qquad
-b \leftarrow b - \eta \nabla_b.
-$$
+b \leftarrow b - \eta \nabla_b.$$
 
 ### Newton / IRLS-style second-order method
 Define the diagonal matrix
-$$
-R = \mathrm{diag}\big(\sigma(z)\odot(1-\sigma(z))\big).
-$$
+$$R = \mathrm{diag}\big(\sigma(z)\odot(1-\sigma(z))\big).$$
 The Hessian is
-$$
-H = \frac{1}{n}X^\top R X + 2\lambda I.
-$$
+$$H = \frac{1}{n}X^\top R X + 2\lambda I.$$
 A small damping term $\delta I$ is added for numerical stability:
-$$
-H \leftarrow H + \delta I.
-$$
+$$H \leftarrow H + \delta I.$$
 The Newton step solves
-$$
-H \Delta = \nabla_w
-$$
+$$H \Delta = \nabla_w$$
 and updates
-$$
-w \leftarrow w - \Delta.
-$$
+$$w \leftarrow w - \Delta.$$
 (An analogous scalar update can be applied to $b$ using the mean curvature of $R$.)
 
 ## Experiment setup (CPU-only)
