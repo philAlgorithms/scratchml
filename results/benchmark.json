@@ -1,0 +1,22 @@
+{
+  "dataset": "synthetic",
+  "n_train": 1600,
+  "n_val": 400,
+  "d": 10,
+  "scratch_gd": {
+    "iters": 300,
+    "final_loss": 0.16946959495544434,
+    "val_acc": 0.9625,
+    "train_seconds": 0.0868040999994264
+  },
+  "scratch_newton": {
+    "iters": 10,
+    "final_loss": 0.14640432596206665,
+    "val_acc": 0.9575,
+    "train_seconds": 0.006767400001990609
+  },
+  "torch_baseline": {
+    "val_acc": 0.955,
+    "train_seconds": 0.03207809999730671
+  }
+}
