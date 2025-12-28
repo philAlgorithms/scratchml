@@ -1,4 +1,4 @@
-# ScratchML (PyTorch, CPU-only): Logistic Regression from Scratch — GD vs Newton
+# ScratchML (PyTorch, CPU-only): Logistic Regression from Scratch - GD vs Newton
 
 ## Goal
 Implement binary logistic regression from scratch using PyTorch tensors and **manual optimization**, then empirically compare convergence behavior between **Gradient Descent** and **Newton (IRLS-style)**. Validate correctness against a standard PyTorch baseline.
@@ -52,7 +52,7 @@ A one-command benchmark produces `results/benchmark.json` and `results/summary.m
 |---|---:|---:|---:|---:|
 | Scratch GD | 300 | 0.169470 | 0.9625 | 0.087 |
 | Scratch Newton | 10 | 0.146404 | 0.9575 | 0.007 |
-| PyTorch baseline (LBFGS) | — | — | 0.9550 | 0.032 |
+| PyTorch baseline (LBFGS) | - | - | 0.9550 | 0.032 |
 
 ![GD vs Newton](figures/gd_vs_newton.png)
 
