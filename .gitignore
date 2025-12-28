@@ -1,0 +1,44 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Virtual environments ---
+.venv/
+venv/
+ENV/
+env/
+
+# --- Packaging / build ---
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Project outputs (generated) ---
+results/
+figures/
+!figures/gd_vs_newton.png
+
+# Runs
+runs/
+runs/**
+
+# --- Temporary / local files ---
+*.log
+
+# --- Accidental folders created by PowerShell command output ---
+-ErrorAction/
+SilentlyContinue/
